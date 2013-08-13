@@ -51,3 +51,5 @@ gem 'carrierwave'
 gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
 gem 'scoped_search'
 
+gem 'omniauth-twitter'
+

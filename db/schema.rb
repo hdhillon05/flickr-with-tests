@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130810200630) do
+ActiveRecord::Schema.define(version: 20130813202246) do
 
   create_table "comments", force: true do |t|
     t.text     "body"
@@ -42,6 +42,10 @@ ActiveRecord::Schema.define(version: 20130810200630) do
     t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "oauth_token"
+    t.string   "oauth_expires_at"
   end
 
   create_table "videos", force: true do |t|

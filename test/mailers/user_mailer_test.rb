@@ -18,5 +18,4 @@ class UserMailerTest < ActionMailer::TestCase
     assert_equal 'Welcome to FlickrApp', email.subject
     #assert_equal read_fixture('confirmation').join, email.body.to_s
   end
-
 end

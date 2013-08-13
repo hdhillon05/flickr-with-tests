@@ -17,8 +17,12 @@ class PhotosController < ApplicationController
   def create
     @photo = Photo.new(photo_params)
     @photo.user = @current_user
-    @photo.save
-    redirect_to photo_path(@photo)
+    if @photo.save
+      UserMailer.new_photo_email(@current_user).deliver
+      redirect_to photo_path(@photo)
+    else
+      redirect_to new_photo_path, notice: "You've entered invalid parameters, please try again"
+    end
   end
 
   def buy #STRIPE: public action b/c it has as URL that routes to it (route file)

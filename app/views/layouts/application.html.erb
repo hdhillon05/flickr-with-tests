@@ -7,7 +7,9 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<%= form_tag search_photos_path do %>
+  <div id="search_bar">Search for Photos:<%= search_field_tag :query %></div>
+<% end %>
 <%= yield %>
 
 </body>

@@ -18,7 +18,7 @@ class SessionsControllerTest < ActionController::TestCase
   test "create with valid params (email and pw) sets session" do
     #we attempted to stub authenticate method here -- but could not get it working. Check this out later, Nick says this is the most correct way.
     user = users(:nick)
-    post :create, user: {email: user.email, password: user.password}
+    post :create, username: user.username, password: user.password
   end
 
   test "destroy clears the sesssion" do
@@ -26,5 +26,4 @@ class SessionsControllerTest < ActionController::TestCase
     get :destroy
     assert_nil session[:user_id]
   end
-
 end

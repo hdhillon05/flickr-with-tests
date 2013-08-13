@@ -11,3 +11,9 @@
  *= require_self
  *= require_tree .
  */
+
+#search_bar {
+  text-align: right;
+  padding-top: 15px;
+  padding-right: 15px;
+}

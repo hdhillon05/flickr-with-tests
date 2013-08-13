@@ -47,5 +47,20 @@ class PhotosControllerTest < ActionController::TestCase
     assert search_results_ids.include?(photo.id)
   end
 
+  test "should send email to user that creates a new photo" do
+    login_as(:nick)
+
+    ActionMailer::Base.deliveries.clear
+
+    post :create, photo: { title: "test photo", description: "test description", upload: "some_upload.png"}
+
+    email = UserMailer.new_photo_email(assigns[:current_user]).deliver
+    assert !ActionMailer::Base.deliveries.empty?
+
+    assert_equal ['test@flickrtest.com'], email.from
+    assert_equal [assigns[:current_user].email], email.to
+    assert_equal "Thanks for posting a new pic!", email.subject
+  end
+
 
 end
