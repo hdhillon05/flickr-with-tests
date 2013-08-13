@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/stripe/stripe-ruby
+  revision: 56d8b910f7510590473b9ac565f86cf80ae486b3
+  specs:
+    stripe (1.8.5)
+      multi_json (>= 1.0.4, < 2)
+      rest-client (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -27,7 +35,12 @@ GEM
       tzinfo (~> 0.3.37)
     arel (4.0.0)
     atomic (1.1.12)
+    bcrypt-ruby (3.0.1)
     builder (3.1.4)
+    carrierwave (0.9.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
     coffee-rails (4.0.0)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0.beta, < 5.0)
@@ -81,11 +94,15 @@ GEM
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    rest-client (1.6.7)
+      mime-types (>= 1.16)
     sass (3.2.10)
     sass-rails (4.0.0)
       railties (>= 4.0.0.beta, < 5.0)
       sass (>= 3.1.10)
       sprockets-rails (~> 2.0.0)
+    scoped_search (2.6.0)
+      activerecord (>= 2.1.0)
     sdoc (0.3.20)
       json (>= 1.1.3)
       rdoc (~> 3.10)
@@ -117,6 +134,8 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt-ruby (~> 3.0.0)
+  carrierwave
   coffee-rails (~> 4.0.0)
   debugger
   dynamic_form
@@ -124,7 +143,9 @@ DEPENDENCIES
   jquery-rails
   rails (= 4.0.0)
   sass-rails (~> 4.0.0)
+  scoped_search
   sdoc
   sqlite3
+  stripe!
   turbolinks
   uglifier (>= 1.3.0)

@@ -29,6 +29,21 @@ class UsersControllerTest < ActionController::TestCase
     assert_template :new
   end
 
+  test "sends email when user created" do
+    user = users(:nick)
+    ActionMailer::Base.deliveries.clear
+    assert_difference 'ActionMailer::Base.deliveries.size' do
+      post :create, user: {username: 'bob', email: 'bob@fake.com', password: 'valid_password', password_confirmation: 'valid_password' }
+      #note: needed to create a brand new user with fresh information b/c under user model we have validated for uniqueness of username
+    end
+    
+    email_confirmation = ActionMailer::Base.deliveries.last
+
+    assert_equal ['bob@fake.com'], email_confirmation.to #using an array for 'harman@fake.com' b/c email_confirmation.to returns an array
+    assert_equal 'Welcome to FlickrApp', email_confirmation.subject
+    assert_equal ['test@flickrtest.com'], email_confirmation.from
+  end
+
   def valid_user_attributes
     user = users(:nick)
     attributes = user.attributes.except("id")

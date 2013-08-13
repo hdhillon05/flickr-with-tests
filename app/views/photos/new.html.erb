@@ -1,0 +1,8 @@
+<h1>Upload a Flickr Photo </h1>
+
+<%= form_for @photo do |f| %>
+  <div>Title: <%=f.text_field :title %></div>
+  <div>Description: <%= f.text_area :description %></div>
+  <div>File: <%= f.file_field :upload %></div>
+  <div><%=f.submit "Upload Photo" %></div>
+<% end %>

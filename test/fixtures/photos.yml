@@ -3,7 +3,7 @@
 one:
   title: MyString
   description: MyText
-  user_id: 
+  user: nick
 
 two:
   title: MyString

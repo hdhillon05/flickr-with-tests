@@ -1,11 +1,25 @@
 Flickr::Application.routes.draw do
-  resources :comments
-
   resources :users
 
   resources :videos
 
-  resources :photos
+  resources :photos do
+    member do
+      post :buy
+    end
+    
+    collection do #when write collection it will have specific routes that look  like this: /photos/search
+      #if you use member route looks like this: photos/:id/search
+      post :search, to: "photos#search"
+    end
+
+    resources :comments
+  end
+
+  resources :sessions, only: [:new,:create,:destroy]
+
+  get 'logout', to: "sessions#destroy" #need an alias for destory which is by default a post action --> users can't get to this without a 'get' and therefore need the alias for destroy
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

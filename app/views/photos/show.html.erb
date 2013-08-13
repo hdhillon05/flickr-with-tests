@@ -1,0 +1,33 @@
+<h1><%= @photo.title %></h1>
+
+<%= image_tag @photo.upload_url %>
+<p><%= @photo.description %></p>
+
+<p>Uploaded by <b><%= @photo.user.username %></b> <%= time_ago_in_words(@photo.created_at) %> ago.</p>
+
+<!--add a purchase form to page: STRIP -->
+<!-- form_for says this is a form and says everything in form is a PROPERTY of a MODEL. Form_tag though does NOT CARE ABOUT MODELS! You can pass urls to both -->
+
+<%= form_tag buy_photo_path do |f| %>
+  <h2>Buy a Print</h2>
+  <div>Size: 10x10</div>
+  <div>Price: <%= number_to_currency(Photo::PRICE/100) %> </div>
+  <div>Email: <%= text_field_tag :email %>
+  <!--pops up stripe javascript form -->
+  <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
+          data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
+          data-description="Print for <%= @photo.title %>"
+          data-amount="<%= Photo::PRICE %>">
+  </script> <!--Injects Javasript file in HTML -->
+<% end %>
+
+
+<% if @photo.comments %>
+  <% @photo.comments.each do |comment| %>
+    <div>Comment: <%= comment.body %></div>
+    <div>Posted by: <%= comment.user.username %></div>
+  <% end %>
+<% end %>
+
+
+<p><%= render 'photo_comment' %></p>

@@ -33,7 +33,7 @@ group :doc do
 end
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the app server
 # gem 'unicorn'
@@ -46,3 +46,8 @@ gem 'debugger', group: [:development, :test]
 
 
 gem 'dynamic_form'
+gem 'carrierwave'
+
+gem 'stripe', :git => 'https://github.com/stripe/stripe-ruby'
+gem 'scoped_search'
+

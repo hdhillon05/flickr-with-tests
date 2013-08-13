@@ -1,0 +1,13 @@
+<p id='notice'><%= notice %></p>
+
+<h1>Login</h1>
+
+<%= form_for @user, url: sessions_path do |f| %>
+  
+  <%= flash[:error] %>
+
+  <div><%= f.text_field :email %></div>
+  <div><%= f.password_field :password %></div>
+  <div><%= f.submit "Sign in" %></div>
+
+<% end %>

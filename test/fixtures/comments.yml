@@ -3,8 +3,8 @@
 one:
   body: MyText
   commentable_id: 
-  commentable_type: Commentable
-  user_id: 
+  commentable_type: Photo
+  user: nick 
 
 two:
   body: MyText
