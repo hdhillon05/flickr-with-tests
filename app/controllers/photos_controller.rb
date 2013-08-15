@@ -34,7 +34,7 @@ class PhotosController < ApplicationController
     #create a new charge to the customer's credit card for the given amount and currency
     Stripe::Charge.create(
       :customer => customer.id,
-      :amount => Photo::PRICE,
+      :amount => @photo.price,
       :description => 'Rails Stripe Customer',
       :currency => 'cad'
     )
@@ -53,6 +53,6 @@ class PhotosController < ApplicationController
   private #when in private, no url for it
 
   def photo_params
-    params.require(:photo).permit(:title,:description,:upload)
+    params.require(:photo).permit(:title,:description,:upload, :price)
   end
 end

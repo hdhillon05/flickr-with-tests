@@ -1,9 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
 one:
-  title: MyString
-  description: MyText
+  title: valid photo title
+  description: valid photo description
   user: nick
+  upload: upload.png
+  price: 599
 
 two:
   title: MyString

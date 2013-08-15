@@ -15,7 +15,7 @@ class SessionsController < ApplicationController
     end
     if user
       session[:user_id] = user.id 
-      redirect_to photos_path
+      redirect_to new_photo_path, notice: "Welcome! would you like to upload a new photo?"
     else
       flash[:error] = "Incorrect password."
       redirect_to new_session_path

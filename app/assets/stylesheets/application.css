@@ -17,3 +17,8 @@
   padding-top: 15px;
   padding-right: 15px;
 }
+
+.uploaded_photo {
+  height: 100px;
+  width: 100px;
+}

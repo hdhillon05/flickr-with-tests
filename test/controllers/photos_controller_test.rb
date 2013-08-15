@@ -21,7 +21,7 @@ class PhotosControllerTest < ActionController::TestCase
   test "create should create a photo record in photo database" do
     login_as(:nick)
     assert_difference "Photo.count" do
-      post :create, photo: {title: "foo", description: "bar"}
+      post :create, photo: {title: "foo", description: "bar", price: "500"}
     end
     photo = assigns(:photo)
     assert photo.user #assert that photo has a user
@@ -52,7 +52,7 @@ class PhotosControllerTest < ActionController::TestCase
 
     ActionMailer::Base.deliveries.clear
 
-    post :create, photo: { title: "test photo", description: "test description", upload: "some_upload.png"}
+    post :create, photo: { title: "test photo", description: "test description", upload: "some_upload.png", price: 5.00}
 
     email = UserMailer.new_photo_email(assigns[:current_user]).deliver
     assert !ActionMailer::Base.deliveries.empty?
@@ -60,6 +60,19 @@ class PhotosControllerTest < ActionController::TestCase
     assert_equal ['test@flickrtest.com'], email.from
     assert_equal [assigns[:current_user].email], email.to
     assert_equal "Thanks for posting a new pic!", email.subject
+  end
+
+  test "test convert_price_to_cents function" do
+    price = Photo.send :convert_price_to_cents, 19.99
+    
+    assert_equal price, 1999
+  end
+
+  test "price for photo should be converted to cents" do
+    login_as(:nick)
+    post :create, photo: { title: "test", description: "test", upload: "test.png", price: 5.99 }
+
+    assert_equal 599, assigns[:photo].price
   end
 
 
