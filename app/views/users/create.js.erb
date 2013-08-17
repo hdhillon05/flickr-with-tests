@@ -1,0 +1,10 @@
+<% if @user.valid? %>
+  $("input[name='commit']").hide()
+  $('#new_user').prepend('<%= image_tag("check_mark.png", size: "50x50") %>')
+  var checkMark = function() {
+    window.location = "../sessions/new"
+  };
+  setTimeout(checkMark, 1000);
+<% else %>
+  $('#new_user').prepend('<%= image_tag("disappointment.gif") %>')
+<% end %>

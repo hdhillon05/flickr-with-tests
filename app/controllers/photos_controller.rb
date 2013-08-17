@@ -2,8 +2,16 @@ class PhotosController < ApplicationController
 
   before_action :require_current_user, except: [:show,:search]
 
-  def index
-    render text: "coming soon"
+  def index  
+      @photos = Photo.all
+  
+
+    # puts "Photos = #{@photos.class}, #{@photos.inspect}"
+    @photo_titles = @photos.collect { |photo| photo.title } 
+    respond_to do |format|  
+      format.json { render :json => @photos.to_json }
+      format.text { render :text => @photo_titles }
+    end
   end
 
   def show
